@@ -13,14 +13,12 @@
  *
  *
  *
- *
- *
-*/
+ */
 
-char *wait_for_line(void)
+char *input_line(void)
 {
     char *buffer = NULL;
-    size_t len = 0;
+    size_t len = 64;
 
     write(1, "$ ", 2);
 
