@@ -17,17 +17,21 @@ extern char **environ;
  */
 typedef struct list_s
 {
-    char *str;
-    unsigned int len;
-    struct list_s *next;
+	char *str;
+	unsigned int len;
+	struct list_s *next;
 } list_t;
 
 /* string.c */
+int _strlen(char *str);
 char *str_concat(char *s1, char *s2);
 
 /* env.c */
 char *_getenv(const char *name);
 list_t *get_path();
+
+/* free.c */
+void free_list(list_t *head);
 
 /* exec.c */
 char *get_bin_path(char **args);
