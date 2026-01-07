@@ -1,39 +1,55 @@
 #include "shell.h"
 
+#include <stdio.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 
-/* TEMP */
-int is_built_in(char *str)
+/**
+ * get_bin_path - Get binary path with his name
+ * @args: Arguments (Array of command line splited by space)
+ *
+ * Return: Path of binary
+ */
+char *get_bin_path(char **args)
 {
-	return (0);
-}
-
-int pre_exec(char **args)
-{
-	int fd;
 	struct stat sb;
-	char *new_bin_path;
+	int fd, path_len;
+	list_t *head, *path;
+	char *path_str, *new_bin_path;
 
-	char bin_path[6] = "/bin/";
-	new_bin_path = str_concat(bin_path, args[0]);
-	printf("%s\n", new_bin_path);
-
-	if (is_built_in(args[0]))
+	new_bin_path = str_concat("/bin/", args[0]);
+	if (stat(new_bin_path, &sb) != -1)
 	{
-		/* Call built-in */
+		return (new_bin_path);
 	}
-	else if (stat(new_bin_path, &sb) != -1)
-	{
-		args[0] = new_bin_path;
-		exec_args(args);
-	}
-	else
-	{
-		/* Scan all dirs ENV PATH */
-	}
-
 	free(new_bin_path);
 
-	return (0);
+	path = get_path();
+	head = path;
+	while (path != NULL)
+	{
+		if (path->str != NULL)
+		{
+			path_str = path->str;
+			path_len = _strlen(path_str);
+
+			if (path_str[path_len - 1] != '/')
+				path_str = str_concat(path_str, "/");
+			new_bin_path = str_concat(path_str, args[0]);
+			free(path_str);
+
+			if (stat(new_bin_path, &sb) != -1)
+			{
+				break;
+			}
+			free(new_bin_path);
+		}
+		path = path->next;
+	}
+
+	free_list(head);
+	if (new_bin_path != NULL)
+		return (new_bin_path);
+
+	return ("");
 }
