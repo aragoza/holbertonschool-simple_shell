@@ -34,4 +34,6 @@ int pre_exec(char **args)
 	}
 
 	free(new_bin_path);
+
+	return (0);
 }
