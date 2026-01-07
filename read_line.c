@@ -1,4 +1,4 @@
-#include "total.h"
+#include "shell.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>

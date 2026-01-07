@@ -29,6 +29,12 @@ char *str_concat(char *s1, char *s2);
 char *_getenv(const char *name);
 list_t *get_path();
 
+void free_iteratively(char **argv);
+
+char *input_line(void);
+
+char **tokenize(char *line, char *delim)
+
 /* exec.c */
 int pre_exec(char **args);
 

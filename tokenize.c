@@ -1,4 +1,4 @@
-#include "total.h"
+#include "shell.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +14,7 @@
  */
 
 
-char **tokenize_a_sentence(char *line, char *delim)
+char **tokenize(char *line, char *delim)
 {
     char **argv;
     char *token;
