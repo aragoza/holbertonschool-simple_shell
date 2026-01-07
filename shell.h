@@ -1,8 +1,11 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+extern char **environ;
 
 /**
  * struct list_s - singly linked list
