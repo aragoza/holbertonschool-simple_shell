@@ -15,17 +15,17 @@ int main(void)
 	while (1)
 	{
 		line = input_line();
-		args = tokenize(line, "\t\n");
+		args = tokenize(line, " ");
 
 		if (!args || !args[0])
 		{
-			free(args);
+			free_iteratively(args);
 			free(line);
 			continue;
 		}
 
 		pre_exec(args);
-		free(args);
+		free_iteratively(args);
 		free(line);
 	}
 
