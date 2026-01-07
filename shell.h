@@ -30,6 +30,6 @@ char *_getenv(const char *name);
 list_t *get_path();
 
 /* exec.c */
-int pre_exec(char **args);
+char *get_bin_path(char **args);
 
 #endif
