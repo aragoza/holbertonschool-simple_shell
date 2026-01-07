@@ -1,12 +1,9 @@
 #include "shell.h"
 
 /**
- *
- *
- *
- *
+ * main - Entry point
+ * Return: Alaways 0
  */
-
 int main(void)
 {
 	char *line;
