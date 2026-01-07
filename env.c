@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _getenv - Get env value by name
+ * @name: Name of ENV value
+ *
+ * Return: ENV Value
+ */
 char *_getenv(const char *name)
 {
 	int i = 0;
@@ -24,27 +30,51 @@ char *_getenv(const char *name)
 	return ((char *)result);
 }
 
+/**
+ * get_path - Get all dirs in the PATH
+ *
+ * Return: Singly linked with dirs
+ */
 list_t *get_path()
 {
-	list_t *new = NULL;
-	list_t *head = NULL;
-	char *strToken = NULL;
-	char *path = _getenv("PATH");
+	char *strToken;
+	char *path, *_path;
+	list_t *new, *head = NULL;
 
-	strToken = strtok(path, ":");
+	path = _getenv("PATH");
+	if (path == NULL)
+		return (NULL);
+
+	_path = strdup(path);
+	if (_path == NULL)
+		return (NULL);
+
+	strToken = strtok(_path, ":");
 	while (strToken != NULL)
 	{
 		new = malloc(sizeof(list_t));
 		if (new == NULL)
+		{
+			free(_path);
+			free_list(head);
 			return (NULL);
+		}
 
 		new->str = strdup(strToken);
-		new->len = strlen(strToken);
+		if (new->str == NULL)
+		{
+			free(new);
+			free(_path);
+			free_list(head);
+			return (NULL);
+		}
+
+		new->len = _strlen(strToken);
 		new->next = head;
 		head = new;
-
 		strToken = strtok(NULL, ":");
 	}
 
+	free(_path);
 	return (head);
 }
