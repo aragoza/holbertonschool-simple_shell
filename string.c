@@ -4,6 +4,22 @@
 #include <stdlib.h>
 
 /**
+ * _strlen - Count length of an string
+ * @str: String
+ *
+ * Return: Length
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while (*(str + len) != '\0')
+		len++;
+
+	return (len);
+}
+
+/**
  * str_concat - Concatenate two string
  * @s1: First string
  * @s2: Last string
@@ -37,7 +53,7 @@ char *str_concat(char *s1, char *s2)
 		result[i] = s1[i];
 
 	for (y = 0; y < len2; y++)
-		result[len1 + y] = s2[y];
+		result[i + y] = s2[y];
 
 	result[i + y] = '\0';
 
