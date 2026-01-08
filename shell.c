@@ -12,8 +12,7 @@ int main(void)
 	while (1)
 	{
 		printf("$ ");  /* Display prompt */
-        /* Read input */
-        line = input_line();
+        line = input_line(); /* Read input */
         if (!line)
             break; /* EOF */
 
@@ -34,7 +33,7 @@ int main(void)
 		execute_command(args);
 
         /* Free tokenized args */
-        free_iteratively(args);
+        free(args);
     }
 
     printf("\n");
