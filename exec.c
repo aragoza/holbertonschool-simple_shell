@@ -56,46 +56,44 @@ char *get_bin_path(char **args)
 
 int execute_command(char **args)
 {
-    char *cmd_path;
-    pid_t pid;
-    int status;
+	char *cmd_path;
+	pid_t pid;
+	int status;
 
-    if (!args || !args[0])
-        return -1;
+	if (!args || !args[0])
+		return (-1);
 
-    /* 1. Check built-ins first */
-    if (check_and_execute_builtin(args) == 0)
-        return 0; /* built-in executed successfully */
+	/* 1. Check built-ins first */
+	if (check_and_execute_builtin(args) == 0)
+		return (0); /* built-in executed successfully */
 
-    /* 2. Search in /bin and all dirs of PATH */
-    cmd_path = get_bin_path(args);
+	/* 2. Search in /bin and all dirs of PATH */
+	cmd_path = get_bin_path(args);
+	if (cmd_path == NULL)
+	{
+		fprintf(stderr, "%s: command not found\n", args[0]);
+		return (-1);
+	}
 
-    if (cmd_path == NULL)
-    {
-        fprintf(stderr, "%s: command not found\n", args[0]);
-        return -1;
-    }
+	pid = fork(); /* 4. Fork and execute external command */
+	if (pid < 0)
+	{
+		perror("fork failed");
+		free(cmd_path);
+		return (-1);
+	}
 
-    /* 4. Fork and execute external command */
-    pid = fork();
-    if (pid < 0)
-    {
-        perror("fork failed");
-        free(cmd_path);
-        return -1;
-    }
+	if (pid == 0) /* child process */
+	{
+		execve(cmd_path, args, environ);
+		perror("execve failed");
+		exit(1);
+	}
+	else /* parent process */
+	{
+		wait(&status);
+	}
 
-    if (pid == 0) /* child process */
-    {
-        execve(cmd_path, args, environ);
-        perror("execve failed");
-        exit(1);
-    }
-    else /* parent process */
-    {
-        wait(&status);
-    }
-
-    free(cmd_path);
-    return status;
+	free(cmd_path);
+	return (status);
 }
