@@ -22,7 +22,7 @@ int check_and_execute_builtin(char **args)
 
 	for (i = 0; builtins[i].name != NULL; i++)
 	{
-		if (strcmp(args[0], builtins[i].name) == 0)
+		if (_strcmp(args[0], builtins[i].name) == 0)
 		{
 
 			builtins[i].func(args);
