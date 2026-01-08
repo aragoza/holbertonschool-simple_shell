@@ -13,13 +13,12 @@
  */
 char *get_bin_path(char **args)
 {
-	struct stat sb;
-	int fd, path_len;
+	int path_len;
 	list_t *head, *path;
 	char *path_str, *new_bin_path;
 
 	new_bin_path = str_concat("/bin/", args[0]);
-	if (stat(new_bin_path, &sb) != -1)
+	if (access(new_bin_path, X_OK) == 0)
 	{
 		return (new_bin_path);
 	}
@@ -39,7 +38,7 @@ char *get_bin_path(char **args)
 			new_bin_path = str_concat(path_str, args[0]);
 			free(path_str);
 
-			if (stat(new_bin_path, &sb) != -1)
+			if (access(new_bin_path, X_OK) == 0)
 			{
 				break;
 			}
