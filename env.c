@@ -6,31 +6,31 @@
  *
  * Return: ENV Value
  */
-
 char *_getenv(const char *name)
 {
-	int i = 0;
-	char *strToken;
-	char *result = NULL;
+	char **env;
+	size_t len;
+	char *value;
 
-	while (environ[i] != NULL)
+	if (!name)
+		return (NULL);
+
+	len = strlen(name);
+
+	env = environ;
+	while (*env != NULL)
 	{
-		strToken = strtok(environ[i], "=");
-		if (strToken == NULL)
-			continue;
-
-		if (strcmp(strToken, name) == 0)
+		/* Check if the environment string starts with name + '=' */
+		if (strncmp(*env, name, len) == 0 && (*env)[len] == '=')
 		{
-			result = strtok(NULL, "=");
-			break;
+			value = *env + len + 1; /* Skip over 'NAME=' */
+			return (value);
 		}
-
-		i++;
+		env++;
 	}
 
-	return ((char *)result);
+	return (NULL); /* Not found */
 }
-
 
 /**
  * get_path - Find the full path of a command using PATH
