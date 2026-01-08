@@ -52,6 +52,12 @@ char *get_bin_path(char **args)
 	return (NULL); /* If not found then return NULL*/
 }
 
+/**
+ * execute_command - executes a command
+ * @args: array of token
+ *
+ * Return: 0 on success
+ */
 int execute_command(char **args)
 {
 	char *cmd_path;
