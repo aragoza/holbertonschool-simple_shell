@@ -18,15 +18,21 @@
 char *input_line(void)
 {
     char *buffer = NULL;
-    size_t len = 64;
+    size_t bufsize = 0;
 
-    write(1, "$ ", 2);
-
-    if (getline(&buffer, &len, stdin) == -1)
+    if (getline(&buffer, &bufsize, stdin) == -1)
     {
         free(buffer);
-        return (NULL);
+        return NULL; /* EOF or error */
     }
 
-    return (buffer);
+    /* Remove trailing newline */
+    if (buffer[0] != '\0')
+    {
+        size_t len = strlen(buffer);
+        if (len > 0 && buffer[len - 1] == '\n')
+            buffer[len - 1] = '\0';
+    }
+
+    return buffer;
 }
