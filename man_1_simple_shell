@@ -12,7 +12,7 @@
 .Sh SYNOPSIS             \" Section Header - required - don't modify
 .Nm
 .Sh DESCRIPTION          \" Section Header - required - don't modify
-A shell is a programm that interprets input, and sends them to the operating system for execution. 
+A shell is a programm that interprets input, and sends them to the operating system for execution.
 This program also checks that the inputs are valid.
 .Nm
 .Sh Command execution
