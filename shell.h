@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 extern char **environ;
 
@@ -15,30 +16,26 @@ extern char **environ;
  *
  * Description: singly linked list node structure
  */
-typedef struct list_s
+
+typedef struct builtin_s
 {
-    char *str;
-    unsigned int len;
-    struct list_s *next;
-} list_t;
+    char *name;
+    int (*func)(char **args);
+} builtin_t;
 
-/* string.c */
-char *str_concat(char *s1, char *s2);
-
-/* env.c */
 char *_getenv(const char *name);
-list_t *get_path();
+
+char *input_line(void);
+char **tokenize(char *line, char *delim);
+char *find_command_in_path(char *cmd);
+char *find_command_in_bin(char *cmd);
+int check_and_execute_builtin(char **args);
+int execute_command(char **args);
+
 
 void free_iteratively(char **argv);
 
-char *input_line(void);
 
-char **tokenize(char *line, char *delim)
 
-/* exec.c */
-int pre_exec(char **args);
 
-/** _executee_arg.c */
-void execute_args(char **args);
-
-#endif
+#endif /* SHELL_H */

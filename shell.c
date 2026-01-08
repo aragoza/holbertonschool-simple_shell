@@ -14,20 +14,32 @@ int main(void)
 
 	while (1)
 	{
-		line = input_line();
-		args = tokenize(line, " ");
+		printf("$ ");  /* Display prompt */
+        /* Read input */
+        line = input_line();
+        if (!line)
+            break; /* EOF */
 
-		if (!args || !args[0])
-		{
-			free_iteratively(args);
-			free(line);
-			continue;
-		}
+        /* Skip empty lines */
+        if (line[0] == '\0')
+        {
+            free(line);
+            continue;
+        }
+        /* Tokenize */
+        args = tokenize(line, " ");
+        free(line);
 
-		pre_exec(args);
-		free_iteratively(args);
-		free(line);
-	}
+        if (!args)
+            continue;
 
-	return (0);
+        /* Execute the command */
+		execute_command(args);
+
+        /* Free tokenized args */
+        free_iteratively(args);
+    }
+
+    printf("\n");
+    return 0;
 }
