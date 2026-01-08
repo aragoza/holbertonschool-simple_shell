@@ -17,7 +17,7 @@ int main(void)
 		line = input_line(); /* Read input */
 		if (!line)
 			break; /* EOF */
-	
+
 		/* Skip empty lines */
 		if (line[0] == '\0')
 		{
