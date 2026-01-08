@@ -1,8 +1,5 @@
 #include "shell.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
  * _strlen - Count length of an string
  * @str: String
