@@ -68,12 +68,8 @@ int execute_command(char **args)
     if (check_and_execute_builtin(args) == 0)
         return 0; /* built-in executed successfully */
 
-    /* 2. Search PATH */
-    cmd_path = find_command_in_path(args[0]);
-
-    /* 3. If not found, try /bin */
-    if (cmd_path == NULL)
-        cmd_path = find_command_in_bin(args[0]);
+    /* 2. Search in /bin and all dirs of PATH */
+    cmd_path = get_bin_path(args);
 
     if (cmd_path == NULL)
     {
