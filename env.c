@@ -18,7 +18,7 @@ char *_getenv(const char *name) /* _getenv("LOGNAME") -> Ilan */
 		if (strToken == NULL)
 			continue; /* If fail to get string before = then skip this ENV value */
 
-		if (strcmp(strToken, name) == 0) /* Check if string before is name */
+		if (_strcmp(strToken, name) == 0) /* Check if string before is name */
 		{
 			/* If name is desired name then set result to string after = */
 			result = strtok(NULL, "=");
