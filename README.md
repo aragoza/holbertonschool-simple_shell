@@ -3,7 +3,7 @@
 ## Description
 
 ```c
-A shell is a programm that interprets input, and sends them to the operating system for execution. 
+A shell is a programm that interprets input, and sends them to the operating system for execution.
 This program also checks that the inputs are valid.
 ```
 ## Logic of the simple shell
