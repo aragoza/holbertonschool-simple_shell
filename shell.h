@@ -54,7 +54,7 @@ int execute_command(char **args);
 int _strlen(char *str);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
-int _strcmp(char *s1, char *s2);
+int _strcmp(const char *s1, const char *s2);
 
 /* env.c */
 char *_getenv(const char *name);
