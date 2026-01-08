@@ -27,7 +27,7 @@ This program also checks that the inputs are valid.
 
 # Flow chart
 
-![.png](flowchart_all_functions.png)
+![alt text](flowchart_all_functions.png)
 
 ## List of functions and system calls.
 
