@@ -6,20 +6,21 @@
  *
  * Return: ENV Value
  */
-char *_getenv(const char *name)
-{
+char *_getenv(const char *name) /* _getenv("LOGNAME") -> Ilan */
+{ /* In ENV all value is stored like this:   LOGNAME=Ilan   */
 	int i = 0;
 	char *strToken;
 	char *result = NULL;
 
 	while (environ[i] != NULL)
 	{
-		strToken = strtok(environ[i], "=");
+		strToken = strtok(environ[i], "="); /* Get string before = */
 		if (strToken == NULL)
-			continue;
+			continue; /* If fail to get string before = then skip this ENV value */
 
-		if (strcmp(strToken, name) == 0)
+		if (strcmp(strToken, name) == 0) /* Check if string before is name */
 		{
+			/* If name is desired name then set result to string after = */
 			result = strtok(NULL, "=");
 			break;
 		}
@@ -35,37 +36,37 @@ char *_getenv(const char *name)
  *
  * Return: Singly linked with dirs
  */
-list_t *get_path()
+list_t *get_path(  )
 {
 	char *strToken;
 	char *path, *_path;
 	list_t *new, *head = NULL;
 
-	path = _getenv("PATH");
+	path = _getenv("PATH"); /* Get PATH Value in ENVIRONEMENT */
 	if (path == NULL)
 		return (NULL);
 
-	_path = strdup(path);
+	_path = strdup(path); /* Make a copy of path has _path */
 	if (_path == NULL)
-		return (NULL);
+		return (NULL); /* If copy fail, return NULL */
 
-	strToken = strtok(_path, ":");
+	strToken = strtok(_path, ":"); /* Get _path element before : */
 	while (strToken != NULL)
 	{
-		new = malloc(sizeof(list_t));
+		new = malloc(sizeof(list_t)); /* Alloc new list_t */
 		if (new == NULL)
 		{
-			free(_path);
-			free_list(head);
+			free(_path); /* Free _path in memory */
+			free_list(head); /* Free all path list in memory */
 			return (NULL);
 		}
 
-		new->str = strdup(strToken);
+		new->str = strdup(strToken); /* Make a copy of element of _path before : */
 		if (new->str == NULL)
 		{
-			free(new);
-			free(_path);
-			free_list(head);
+			free(new); /* Free new list element in memory */
+			free(_path); /* Free the copy of the path */
+			free_list(head); /* Free all the list in memory */
 			return (NULL);
 		}
 
