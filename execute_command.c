@@ -6,7 +6,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* --- execute_command function --- */
 int execute_command(char **args)
 {
     char *cmd_path;
