@@ -36,7 +36,7 @@ char *_getenv(const char *name) /* _getenv("LOGNAME") -> Ilan */
  *
  * Return: Singly linked with dirs
  */
-list_t *get_path(  )
+list_t *get_path()
 {
 	char *strToken;
 	char *path, *_path;
