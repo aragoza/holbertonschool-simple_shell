@@ -14,7 +14,7 @@ This program also checks that the inputs are valid.
 
 * ISO C89
 * ANSI C
-* **librairy** : unistd.h / stdlib.h / stdarg.h / stddef.h / string.h
+* **librairy** : unistd.h / stdlib.h / stdio.h / string.h / sys/wait.h / sys/types.h
 
 # example of shell:
 ```c
@@ -22,8 +22,11 @@ This program also checks that the inputs are valid.
 ```
 
 ```c
- $ man shell
+$ ls
+AUTHORS.md      README.md       check_then_exec_builtin.c  find_bin.c   flowchart_all_functions.png  hsh          shell.c  tokenize.c
+Logic_of_shell.png  _get_env.c  execute_command.c          find_path.c  free_iterative.c             read_line.c  shell.h
 ```
+
 
 # Flow chart
 
@@ -44,7 +47,11 @@ This program also checks that the inputs are valid.
 
 Any advise for common problems or issues.
 ```
-if the stream is more than 1024 byte the shell will not work
+if the stream input is more than 1024 byte the shell will not work
+```
+
+```c
+$ man shell
 ```
 
 ## Authors
