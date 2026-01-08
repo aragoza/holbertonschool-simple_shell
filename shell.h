@@ -37,13 +37,17 @@ typedef struct builtin_s
 	int (*func)(char **args);
 } builtin_t;
 
-char *_getenv(const char *name);
-
+/* read_line.c */
 char *input_line(void);
+
+/* tokenize.c */
 char **tokenize(char *line, char *delim);
-char *find_command_in_path(char *cmd);
-char *find_command_in_bin(char *cmd);
+
+/* check_then_exec_builtin.c */
 int check_and_execute_builtin(char **args);
+
+/* exec.c */
+char *get_bin_path(char **args);
 int execute_command(char **args);
 
 /* string.c */
