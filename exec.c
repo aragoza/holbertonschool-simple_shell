@@ -20,7 +20,8 @@ char *get_bin_path(char **args)
 	if (access(args[0], X_OK) == 0) /* If command is a bin*/
 		return (args[0]); /* Return the bin given by user*/
 	new_bin_path = str_concat("/bin/", args[0]);/* Concat /bin + command*/
-	if (access(new_bin_path, X_OK) == 0)/* Check if /bin + command is executable */
+	/* Check if /bin + command is executable */
+	if (access(new_bin_path, X_OK) == 0)
 		return (new_bin_path);
 	free(new_bin_path);
 

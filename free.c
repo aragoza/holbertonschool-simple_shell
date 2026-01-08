@@ -8,15 +8,15 @@
  */
 void free_iteratively(char **argv)
 {
-    int i = 0;
+	int i = 0;
 
-    while (argv[i])
-    {
-        free(argv[i]);
-        i++;
-    }
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
 
-    free(argv);
+	free(argv);
 }
 
 /**

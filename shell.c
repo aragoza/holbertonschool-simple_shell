@@ -13,10 +13,10 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");  /* Display prompt */
-        line = input_line(); /* Read input */
-        if (!line)
-            break; /* EOF */
+	printf("$ ");  /* Display prompt */
+	line = input_line(); /* Read input */
+	if (!line)
+		break; /* EOF */
 
 		/* Skip empty lines */
 		if (line[0] == '\0')
@@ -34,9 +34,9 @@ int main(void)
 		/* Execute the command */
 		execute_command(args);
 
-        /* Free tokenized args */
-        free(args);
-    }
+		/* Free tokenized args */
+		free(args);
+	}
 
 	printf("\n");
 	return (0);
