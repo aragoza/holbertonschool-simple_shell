@@ -25,6 +25,8 @@ char *get_bin_path(char **args)
 		return (new_bin_path);
 	free(new_bin_path);
 
+	/** CRASH */
+
 	head = path = get_path(); /* Set path to get_path and copy it to head */
 	while (path != NULL)
 	{
@@ -40,15 +42,21 @@ char *get_bin_path(char **args)
 
 			/* Check if the command is an executable in the dir of the path */
 			if (access(new_bin_path, X_OK) == 0)
-				break; /* Stop search in path bc its found */
+			{
+				free(head);
+				printf("Oo :while:1 new_bin_path: %s\n", new_bin_path);
+				return (new_bin_path);
+			}
+
 			free(new_bin_path); /* Free new_bin_path of memory */
 		}
 		path = path->next; /* Set path to the next path*/
 	}
 
-	free_list(head); /* Free the path list*/
-	if (new_bin_path != NULL)
-		return (new_bin_path); /* If path found then return path*/
+	free_list(head);
+
+	/** END CRASH IF CMD NOT FOUND */
+
 	return (NULL); /* If not found then return NULL*/
 }
 
@@ -66,10 +74,12 @@ int execute_command(char **args)
 
 	if (!args || !args[0])
 		return (-1);
+
 	if (check_and_execute_builtin(args) == 0) /* 1. Check built-ins first */
 		return (0); /* Successful executed*/
 
 	cmd_path = get_bin_path(args); /* 2. Search in /bin and all dirs of PATH */
+	printf("cmd_path: %s\n", cmd_path);
 
 	if (cmd_path == NULL)
 	{
