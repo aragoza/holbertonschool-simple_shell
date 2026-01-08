@@ -8,7 +8,7 @@ This program also checks that the inputs are valid.
 ```
 ## Logic of the simple shell
 
-![alt text](Logic_of_shell.png)
+![alt text](img/Logic_of_shell.png)
 
 ### Dependencies
 
@@ -30,7 +30,7 @@ Logic_of_shell.png  _get_env.c  execute_command.c          find_path.c  free_ite
 
 # Flow chart
 
-![alt text](flowchart_all_functions.png)
+![alt text](img/flowchart_all_functions.png)
 
 ## List of functions and system calls.
 
