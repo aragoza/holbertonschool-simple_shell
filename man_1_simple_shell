@@ -1,0 +1,65 @@
+.\"Modified from man(1) of FreeBSD, the NetBSD mdoc.template, and mdoc.samples.
+.\"See Also:
+.\"man mdoc.samples for a complete listing of options
+.\"man mdoc for the short list of editing options
+.\"/usr/share/misc/mdoc.template
+.Dd 8/4/10               \" DATE
+.Dt shell 1      \" Program name and manual section number
+.Os Darwin
+.Sh NAME                 \" Section Header - required - don't modify
+.Nm shell
+- command interpreter
+.Sh SYNOPSIS             \" Section Header - required - don't modify
+.Nm
+.Sh DESCRIPTION          \" Section Header - required - don't modify
+A shell is a programm that interprets input, and sends them to the operating system for execution. 
+This program also checks that the inputs are valid.
+.Nm
+.Sh Command execution
+When the command is executed, it is split into a list of arguments. The first argument is the command. We check whether it is a built-in command. If it is not a built-in command, we check in /bin to see if there is an executable with the same name as the command. If not, we check each directory in the PATH to see if there is an executable with the same name as the command.
+.\" .Sh ENVIRONMENT      \" May not be needed
+.\" .Bl -tag -width "ENV_VAR_1" -indent \" ENV_VAR_1 is width of the string ENV_VAR_1
+.\" .It Ev ENV_VAR_1
+.\" Description of ENV_VAR_1
+.\" .It Ev ENV_VAR_2
+.\" Description of ENV_VAR_2
+.\" .El
+.Sh FILES                \" File used or created by the topic of the man page
+.Bl -tag -compact
+.It shell.h
+Header file (contains include, type and prototype)
+.It shell.c
+Main file (entry point)
+.It env.c
+Environements functions
+.It free.c
+Free memory functions
+.It string.c
+String functions
+.El
+.Sh BUILTINS
+.Bl -tag -width -indent
+.It env
+Show all environements value
+.It exit [statut]
+Exit the shell
+.El
+.Sh SEE ALSO
+.Xr _exit 3 ,
+.Xr fork 2 ,
+.Xr free 3 ,
+.Xr getline 3 ,
+.Xr execve 2 ,
+.Xr malloc 3 ,
+.Xr perror 3 ,
+.Xr strtok 3 ,
+.Xr waitpid 2
+.Sh AUTHORS
+.Bl -tag -width -indent
+.It Ilan DEVERSENNE
+Developer
+.It Elliot CHARLET
+Developer
+.El
+.\" .Sh BUGS              \" Document known, unremedied bugs
+.\" .Sh HISTORY           \" Document history if command behaves in a unique manner
