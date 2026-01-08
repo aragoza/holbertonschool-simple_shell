@@ -44,8 +44,9 @@ char **tokenize(char *line, char *delim)
     token = strtok(line, delim);
     while (token)
     {
-        argv[i++] = strdup(token);
+        argv[i] = strdup(token);
         token = strtok(NULL, delim);
+        i++;
     }
     argv[i] = NULL;
 
