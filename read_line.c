@@ -7,32 +7,31 @@
 #include <sys/wait.h>
 
 /**
+ * input_line - read the stream and stock in buffer
  *
- *
- *
- *
- *
- *
+ * Return: buffer on success or NULL on fail
  */
 
 char *input_line(void)
 {
-    char *buffer = NULL;
-    size_t bufsize = 0;
+	char *buffer = NULL;
+	size_t bufsize = 0;
+	size_t len;
 
-    if (getline(&buffer, &bufsize, stdin) == -1)
-    {
-        free(buffer);
-        return NULL; /* EOF or error */
-    }
+	if (getline(&buffer, &bufsize, stdin) == -1)
+	{
+		free(buffer);
+		return (NULL); /* EOF or error */
+	}
 
-    /* Remove trailing newline */
-    if (buffer[0] != '\0')
-    {
-        size_t len = strlen(buffer);
-        if (len > 0 && buffer[len - 1] == '\n')
-            buffer[len - 1] = '\0';
-    }
+	/* Remove trailing newline */
+	if (buffer[0] != '\0')
+	{
+		len = strlen(buffer);
 
-    return buffer;
+		if (len > 0 && buffer[len - 1] == '\n')
+			buffer[len - 1] = '\0';
+	}
+
+	return (buffer);
 }

@@ -6,6 +6,7 @@
  *
  * Return: ENV Value
  */
+
 char *_getenv(const char *name)
 {
 	int i = 0;
@@ -30,51 +31,51 @@ char *_getenv(const char *name)
 	return ((char *)result);
 }
 
+
 /**
- * get_path - Get all dirs in the PATH
+ * get_path - Find the full path of a command using PATH
+ * @cmd: The command name to find
  *
- * Return: Singly linked with dirs
+ * Return: Full path to the command, or NULL if not found
  */
-list_t *get_path()
+
+char *get_path(char *cmd)
 {
-	char *strToken;
-	char *path, *_path;
-	list_t *new, *head = NULL;
+	char *path;
+	char *path_dup;
+	char *dir;
+	char *full_path;
+	int len;
 
-	path = _getenv("PATH");
-	if (path == NULL)
+	path = _getenv("PATH"); /* Use our custom getenv */
+	if (!path)
 		return (NULL);
 
-	_path = strdup(path);
-	if (_path == NULL)
+	path_dup = strdup(path);
+	if (!path_dup)
 		return (NULL);
 
-	strToken = strtok(_path, ":");
-	while (strToken != NULL)
+	dir = strtok(path_dup, ":");
+	while (dir != NULL)
 	{
-		new = malloc(sizeof(list_t));
-		if (new == NULL)
+		len = strlen(dir) + 1 + strlen(cmd) + 1;
+		full_path = (char *)malloc(len);
+		if (!full_path)
 		{
-			free(_path);
-			free_list(head);
+			free(path_dup);
 			return (NULL);
 		}
-
-		new->str = strdup(strToken);
-		if (new->str == NULL)
+		/* Combine directory and command */
+		sprintf(full_path, "%s/%s", dir, cmd);
+		if (access(full_path, X_OK) == 0)
 		{
-			free(new);
-			free(_path);
-			free_list(head);
-			return (NULL);
+			free(path_dup);
+			return (full_path); /* caller must free */
 		}
-
-		new->len = _strlen(strToken);
-		new->next = head;
-		head = new;
-		strToken = strtok(NULL, ":");
+		free(full_path);
+		dir = strtok(NULL, ":");
 	}
 
-	free(_path);
-	return (head);
+	free(path_dup);
+	return (NULL); /* Not found */
 }

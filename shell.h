@@ -9,34 +9,18 @@
 extern char **environ;
 
 /**
- * struct list_s - singly linked list
- * @str: string - (malloc'ed string)
- * @len: length of the string
- * @next: points to the next node
+ * struct builtin_s - function builtin
+ * @name: name of the command
+ * @func: function pointer
  *
- * Description: singly linked list node structure
+ * Description: struct for array of builtin function
  */
 
 typedef struct builtin_s
 {
-    char *name;
-    int (*func)(char **args);
+	char *name;
+	int (*func)(char **args);
 } builtin_t;
-
-/**
- * struct list_s - singly linked list
- * @str: string - (malloc'ed string)
- * @len: length of the string
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- */
-typedef struct list_s
-{
-	char *str;
-	unsigned int len;
-	struct list_s *next;
-} list_t;
 
 char *_getenv(const char *name);
 
@@ -53,10 +37,10 @@ char *str_concat(char *s1, char *s2);
 
 /* env.c */
 char *_getenv(const char *name);
-list_t *get_path();
+char *get_path(char *name);
 
 /* free.c */
-void free_list(list_t *head);
+/** void free_list(list_t *head);*/
 void free_iteratively(char **argv);
 
 
