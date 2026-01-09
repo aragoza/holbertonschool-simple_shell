@@ -17,7 +17,6 @@ char *get_bin_path(char **args)
 	list_t *head, *path;
 	char *path_str, *new_bin_path;
 
-	return (args[0]);
 	if (access(args[0], X_OK) == 0) /* If command is a bin*/
 		return (args[0]); /* Return the bin given by user*/
 	new_bin_path = str_concat("/bin/", args[0]);/* Concat /bin + command*/
