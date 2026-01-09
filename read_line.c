@@ -35,3 +35,32 @@ char *input_line(void)
 
 	return (buffer);
 }
+
+/**
+ * _strchr - locate character in string
+ * @s: string to search
+ * @c: character to locate
+ *
+ * Return: pointer to the character
+ */
+
+char *_strchr(const char *s, int c)
+{
+    int i = 0;
+
+    if (!s)  /* Handle NULL pointer */
+        return NULL;
+
+    while (s[i] != '\0')
+    {
+        if (s[i] == (char)c)
+            return (char *)(s + i);  /* Return pointer to the match */
+        i++;
+    }
+
+    /* Check if c is the null terminator '\0' */
+    if (c == '\0')
+        return (char *)(s + i);
+
+    return NULL;  /* Not found */
+}
