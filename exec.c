@@ -17,6 +17,7 @@ char *get_bin_path(char **args)
 	list_t *head, *path;
 	char *path_str, *new_bin_path;
 
+	return (args[0]);
 	if (access(args[0], X_OK) == 0) /* If command is a bin*/
 		return (args[0]); /* Return the bin given by user*/
 	new_bin_path = str_concat("/bin/", args[0]);/* Concat /bin + command*/
@@ -41,7 +42,6 @@ char *get_bin_path(char **args)
 			if (access(new_bin_path, X_OK) == 0)
 			{
 				free(head);
-				printf("Oo :while:1 new_bin_path: %s\n", new_bin_path);
 				return (new_bin_path);
 			}
 
@@ -74,7 +74,6 @@ int execute_command(char **args)
 		return (0); /* Successful executed*/
 
 	cmd_path = get_bin_path(args); /* 2. Search in /bin and all dirs of PATH */
-	printf("cmd_path: %s\n", cmd_path);
 
 	if (cmd_path == NULL)
 	{
