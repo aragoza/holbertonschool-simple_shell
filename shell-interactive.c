@@ -6,7 +6,7 @@
  * Return: 0 when the loop ends
  */
 
-int main(void)
+int shell_interactive(void)
 {
 	char *line;
 	char **args;
@@ -35,7 +35,7 @@ int main(void)
 		execute_command(args);
 
 		/* Free tokenized args */
-		free(args);
+		free_iteratively(args);
 	}
 
 	printf("\n");
