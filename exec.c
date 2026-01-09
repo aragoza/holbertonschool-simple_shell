@@ -25,8 +25,6 @@ char *get_bin_path(char **args)
 		return (new_bin_path);
 	free(new_bin_path);
 
-	/** CRASH */
-
 	head = path = get_path(); /* Set path to get_path and copy it to head */
 	while (path != NULL)
 	{
@@ -38,7 +36,6 @@ char *get_bin_path(char **args)
 			if (path_str[path_len - 1] != '/') /* If path don't finish by / */
 				path_str = str_concat(path_str, "/"); /* Then add / at end of path_str */
 			new_bin_path = str_concat(path_str, args[0]);/*Concat dir path and command*/
-			free(path_str);
 
 			/* Check if the command is an executable in the dir of the path */
 			if (access(new_bin_path, X_OK) == 0)
@@ -49,13 +46,11 @@ char *get_bin_path(char **args)
 			}
 
 			free(new_bin_path); /* Free new_bin_path of memory */
+			path = path->next; /* Set path to the next path*/
 		}
-		path = path->next; /* Set path to the next path*/
 	}
 
 	free_list(head);
-
-	/** END CRASH IF CMD NOT FOUND */
 
 	return (NULL); /* If not found then return NULL*/
 }
