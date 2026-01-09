@@ -37,8 +37,13 @@ typedef struct builtin_s
 	int (*func)(char **args);
 } builtin_t;
 
+/* shell.c */
+int shell_interactive(void);
+int shell_non_interactive(void);
+
 /* read_line.c */
 char *input_line(void);
+char *_strchr(const char *s, int c);
 
 /* tokenize.c */
 char **tokenize(char *line, char *delim);
@@ -49,6 +54,7 @@ int check_and_execute_builtin(char **args);
 /* exec.c */
 char *get_bin_path(char **args);
 int execute_command(char **args);
+int execute_args(char **args);
 
 /* string.c */
 int _strlen(char *str);
