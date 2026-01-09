@@ -23,8 +23,7 @@ This program also checks that the inputs are valid.
 
 ```c
 $ ls
-AUTHORS.md      README.md       check_then_exec_builtin.c  find_bin.c   flowchart_all_functions.png  hsh          shell.c  tokenize.c
-Logic_of_shell.png  _get_env.c  execute_command.c          find_path.c  free_iterative.c             read_line.c  shell.h
+AUTHORS.md  README.md  check_then_exec_builtin.c  env.c  exec.c  free.c  hsh  img  main.c  man_1_simple_shell  read_line.c  shell-interactive.c  shell-non-interactive.c  shell.h  string.c  tokenize.c
 ```
 
 
@@ -35,6 +34,7 @@ Logic_of_shell.png  _get_env.c  execute_command.c          find_path.c  free_ite
 ## List of functions and system calls.
 
 * ```_exit``` (man 3 exit)
+* ```execve``` (man 2 execve)
 * ```fork``` (man 2 fork)
 * ```free``` (man 3 free)
 * ```getline``` (man 3 getline)
@@ -42,25 +42,22 @@ Logic_of_shell.png  _get_env.c  execute_command.c          find_path.c  free_ite
 * ```perror``` (man 3 perror)
 * ```strtok``` (man 3 strtok)
 * ```waitpid``` (man 2 waitpid)
-
+* ```wait``` (man 2 wait)
 ## Help
 
 Any advise for common problems or issues.
-```
-if the stream input is more than 1024 byte the shell will not work
-```
 
 ```c
-$ man shell
+$ man ./man_1_simple_shell 
 ```
 
 ## Authors
 
 Contributors names and contact info
 
-name : Elliot CHARLET / Ilan DEVERSENNE
-e-mail : _charlet.elliot@gmail.com_ _ilan.deversenne@holbertonstudents.com_
+name : Elliot CHARLET / Ilan DEVERSENNE /Robin BOUVIER
+e-mail : _charlet.elliot@gmail.com_ / _ilan.deversenne@holbertonstudents.com_ / 12229@holbertonstudents.com
 
 ## License
 
-This project is licensed under the [ELLIOT CHARLET and ILAN DEVERSENNE] License
+This project is licensed under the [ELLIOT CHARLET and ILAN DEVERSENNE and ROBIN BOUVIER] License
