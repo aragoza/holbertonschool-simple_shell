@@ -3,12 +3,12 @@
 
 ## Project technical leads:
 
-* Ilan DEVERSENNE
-* Elliot CHARLET
-* Robin BOUVIER
+* Ilan DEVERSENNE  <ilan.deversenne@holbertonstudents.com>
+* Elliot CHARLET   <elliot.charlet@holbertonstudents.com>
+* Robin BOUVIER    <robin.bouvier@holbertonstudents.com>
 
 ## Developers:
 
-* Ilan DEVERSENNE
-* Elliot CHARLET
-* Robin BOUVIER
+* Ilan DEVERSENNE  <ilan.deversenne@holbertonstudents.com>
+* Elliot CHARLET   <elliot.charlet@holbertonstudents.com>
+* Robin BOUVIER    <robin.bouvier@holbertonstudents.com>
