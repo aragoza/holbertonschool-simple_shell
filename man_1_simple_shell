@@ -5,7 +5,7 @@
 .\"/usr/share/misc/mdoc.template
 .Dd 8/4/10               \" DATE
 .Dt shell 1      \" Program name and manual section number
-.Os Darwin
+.Os Linux
 .Sh NAME                 \" Section Header - required - don't modify
 .Nm shell
 - command interpreter
@@ -28,7 +28,11 @@ When the command is executed, it is split into a list of arguments. The first ar
 .Bl -tag -compact
 .It shell.h
 Header file (contains include, type and prototype)
-.It shell.c
+.It shell-interactive.c
+Interactive mode for executing the shell
+.It shell-non-interactive.c
+Non-interactive mode
+.It main.c
 Main file (entry point)
 .It env.c
 Environements functions
@@ -36,6 +40,12 @@ Environements functions
 Free memory functions
 .It string.c
 String functions
+.It read_line.c
+Read the input from the stream
+.It tokenize.c
+Parse the line read
+.It check_the_exec_builtin.c
+Check for the builtin and execute it
 .El
 .Sh BUILTINS
 .Bl -tag -width -indent
@@ -53,12 +63,15 @@ Exit the shell
 .Xr malloc 3 ,
 .Xr perror 3 ,
 .Xr strtok 3 ,
-.Xr waitpid 2
+.Xr waitpid 2 ,
+.Xr wait 2
 .Sh AUTHORS
 .Bl -tag -width -indent
 .It Ilan DEVERSENNE
 Developer
 .It Elliot CHARLET
+Developer
+.It Robin BOUVIER
 Developer
 .El
 .\" .Sh BUGS              \" Document known, unremedied bugs
