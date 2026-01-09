@@ -6,6 +6,13 @@
 A shell is a programm that interprets input, and sends them to the operating system for execution.
 This program also checks that the inputs are valid.
 ```
+
+## Compilation
+
+```c
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
+
 ## Logic of the simple shell
 
 ![alt text](img/Logic_of_shell.png)
