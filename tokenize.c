@@ -29,12 +29,12 @@ char **tokenize(char *line, char *delim)
 		return (NULL);
 
 	token = strtok(tmp, delim);
-	free(tmp);
 	while (token)
 	{
 		count++;
 		token = strtok(NULL, delim);
 	}
+	free(tmp);
 
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (!argv)
