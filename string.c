@@ -31,27 +31,29 @@ char *str_concat(char *s1, char *s2)
 	len1 = 0;
 	len2 = 0;
 
-	if (s1 == NULL)
+	if (s1 == NULL) /* Init s1 if NULL*/
 		s1 = "";
-	if (s2 == NULL)
+	if (s2 == NULL) /* Init s2 if NULL*/
 		s2 = "";
 
-	while (s1[len1] != '\0')
+	while (s1[len1] != '\0') /* Count length of s1 */
 		len1++;
 
-	while (s2[len2] != '\0')
+	while (s2[len2] != '\0') /* Count length of s2 */
 		len2++;
 
+	/* Alloc a string with len (s1 + s2) +1 for \0 */
 	result = malloc((len1 + len2 + 1) * sizeof(char));
-	if (result == NULL)
+	if (result == NULL) /* If alloc fail then return NULL */
 		return (NULL);
 
-	for (i = 0; i < len1; i++)
+	for (i = 0; i < len1; i++) /* Add s1 to result */
 		result[i] = s1[i];
 
-	for (y = 0; y < len2; y++)
+	for (y = 0; y < len2; y++) /* Add s2 to result */
 		result[i + y] = s2[y];
 
+	/* Add \0 to terminate string */
 	result[i + y] = '\0';
 
 	return (result);
