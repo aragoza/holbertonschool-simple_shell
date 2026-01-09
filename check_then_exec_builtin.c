@@ -1,15 +1,13 @@
 #include "shell.h"
 #include <string.h>
 
-extern char **environ;
-
 /**
- * our_exit - This is the build-in of exit
+ * __exit - This is the build-in of exit
  *
  * Return: 0
  */
 
-int our_exit(void)
+int __exit(void)
 {
 	exit(0);
 	return (0);
@@ -44,7 +42,7 @@ int check_and_execute_builtin(char **args)
 {
 	int i;
 	builtin_t builtins[] = {
-		{"exit", our_exit},
+		{"exit", __exit},
 		{"env", __env},
 		{NULL, NULL}
 	};
@@ -58,7 +56,7 @@ int check_and_execute_builtin(char **args)
 		if (_strcmp(args[0], builtins[i].name) == 0)
 		{
 
-			builtins[i].func(args);
+			builtins[i].func();
 			return (0);
 		}
 	}
